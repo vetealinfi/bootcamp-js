@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Encuesta de Audífonos - Tipos de Input HTML</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #eef2f3, #cfd9df);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .form-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 2.5rem;
+        max-width: 1000px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .form-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #4facfe);
+        background-size: 200% 100%;
+        animation: gradient-shift 3s ease infinite;
+      }
+
+      @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+
+      h1 {
+        text-align: center;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #718096;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+      }
+
+      form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 100%;
+        position: relative;
+      }
+
+      label {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #2d3748;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      label::before {
+        content: '▸';
+        color: #667eea;
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+      }
+
+      .form-group:focus-within label::before {
+        transform: rotate(90deg);
+      }
+
+      /* Estilos para inputs de texto básicos */
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="url"],
+      input[type="search"],
+      input[type="password"],
+      input[type="number"],
+      select,
+      textarea {
+        padding: 0.875rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: all 0.3s ease;
+        background: #f7fafc;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #667eea;
+        outline: none;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        transform: translateY(-2px);
+      }
+
+      /* Input de tipo DATE */
+      input[type="date"],
+      input[type="datetime-local"],
+      input[type="time"],
+      input[type="month"],
+      input[type="week"] {
+        padding: 0.875rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        font-size: 1rem;
+        background: #f7fafc;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      input[type="date"]:focus,
+      input[type="datetime-local"]:focus,
+      input[type="time"]:focus,
+      input[type="month"]:focus,
+      input[type="week"]:focus {
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      /* Input de tipo RANGE (Slider) */
+      input[type="range"] {
+        width: 100%;
+        height: 8px;
+        border-radius: 5px;
+        background: #e2e8f0;
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+        transition: transform 0.2s ease;
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 2px 6px rgba(102, 126, 234, 0.4);
+      }
+
+      .range-value {
+        text-align: center;
+        font-weight: 600;
+        color: #667eea;
+        margin-top: 0.5rem;
+        font-size: 1.1rem;
+      }
+
+      /* Input de tipo COLOR */
+      input[type="color"] {
+        width: 100%;
+        height: 50px;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 0;
+        background: none;
+        transition: all 0.3s ease;
+      }
+
+      input[type="color"]:hover {
+        border-color: #667eea;
+        transform: scale(1.02);
+      }
+
+      input[type="color"]::-webkit-color-swatch-wrapper {
+        padding: 0;
+        border-radius: 8px;
+      }
+
+      input[type="color"]::-webkit-color-swatch {
+        border: none;
+        border-radius: 8px;
+      }
+
+      /* Input de tipo FILE */
+      input[type="file"] {
+        padding: 0.875rem 1rem;
+        border: 2px dashed #cbd5e0;
+        border-radius: 10px;
+        background: #f7fafc;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+
+      input[type="file"]:hover {
+        border-color: #667eea;
+        background: #edf2f7;
+      }
+
+      input[type="file"]:focus {
+        border-color: #667eea;
+        border-style: solid;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      /* Radio buttons personalizados */
+      input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: #667eea;
+        margin-right: 0.5rem;
+      }
+
+      /* Checkboxes personalizados */
+      input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: #667eea;
+        margin-right: 0.5rem;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      .radio-group,
+      .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 0.5rem;
+        padding: 1rem;
+        background: #f7fafc;
+        border-radius: 10px;
+        border: 2px solid #e2e8f0;
+        transition: all 0.3s ease;
+      }
+
+      .form-group:focus-within .radio-group,
+      .form-group:focus-within .checkbox-group {
+        border-color: #667eea;
+        background: white;
+      }
+
+      .radio-group label,
+      .checkbox-group label {
+        font-weight: 400;
+        color: #4a5568;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+      }
+
+      .radio-group label:hover,
+      .checkbox-group label:hover {
+        background: rgba(102, 126, 234, 0.1);
+      }
+
+      .radio-group label::before,
+      .checkbox-group label::before {
+        display: none;
+      }
+
+      /* Botón de envío mejorado */
+      form button,
+      input[type="submit"] {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        font-family: inherit;
+      }
+
+      form button::before,
+      input[type="submit"]::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      form button:hover::before,
+      input[type="submit"]:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      form button:hover,
+      input[type="submit"]:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+      }
+
+      form button:active,
+      input[type="submit"]:active {
+        transform: translateY(-1px);
+      }
+
+      form button span {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Input info helper */
+      .input-info {
+        font-size: 0.8rem;
+        color: #718096;
+        margin-top: 0.25rem;
+        font-style: italic;
+      }
+
+      /* Diseño responsive de dos columnas */
+      /* Móviles grandes */
+      @media (min-width: 576px) {
+        .form-container {
+          padding: 3rem;
+        }
+
+        h1 {
+          font-size: 2.25rem;
+        }
+      }
+
+      /* Tablets */
+      @media (min-width: 768px) {
+        .form-group {
+          flex: 1 1 calc(50% - 0.75rem);
+        }
+
+        .form-group.full-width {
+          flex: 1 1 100%;
+        }
+      }
+
+      /* Laptops */
+      @media (min-width: 992px) {
+        .form-container {
+          padding: 3.5rem;
+          max-width: 1100px;
+        }
+
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .form-group {
+          flex: 1 1 calc(50% - 0.75rem);
+        }
+      }
+
+      /* Escritorios grandes */
+      @media (min-width: 1200px) {
+        .form-container {
+          padding: 4rem;
+          max-width: 1200px;
+        }
+
+        h1 {
+          font-size: 2.75rem;
+        }
+      }
+
+      /* Efecto de validación visual */
+      input:valid:not(:placeholder-shown) {
+        border-color: #48bb78;
+      }
+
+      input:invalid:not(:placeholder-shown):not(:focus) {
+        border-color: #f56565;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="form-container">
+      <h1>Encuesta de Audífonos Sleve Mobile</h1>
+      <p class="subtitle">Explorando todos los tipos de input HTML</p>
+
+      <form>
+        <!-- Información básica -->
+        <div class="form-group">
+          <label for="name">Nombre completo:</label>
+          <input type="text" id="name" name="name" placeholder="Ej: Juan Pérez" required />
+          <span class="input-info">Tipo: text</span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo Electrónico:</label>
+          <input type="email" id="email" name="email" placeholder="ejemplo@correo.com" required />
+          <span class="input-info">Tipo: email (valida formato automáticamente)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="tel">Teléfono:</label>
+          <input type="tel" id="tel" name="tel" placeholder="+34 600 000 000" />
+          <span class="input-info">Tipo: tel (optimizado para móviles)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="website">Sitio web personal (opcional):</label>
+          <input type="url" id="website" name="website" placeholder="https://miweb.com" />
+          <span class="input-info">Tipo: url (valida URLs)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña para tu cuenta:</label>
+          <input type="password" id="password" name="password" placeholder="Mínimo 8 caracteres" minlength="8" />
+          <span class="input-info">Tipo: password (oculta el texto)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="search">Buscar modelo de audífonos:</label>
+          <input type="search" id="search" name="search" placeholder="Buscar..." />
+          <span class="input-info">Tipo: search (incluye botón de limpiar en algunos navegadores)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Rango de edad:</label>
+          <select id="age" name="age" required>
+            <option value="" disabled selected hidden>Selecciona tu rango de edad</option>
+            <option value="12-17">12-17 años</option>
+            <option value="18-25">18-25 años</option>
+            <option value="26-35">26-35 años</option>
+            <option value="36-45">36-45 años</option>
+            <option value="46-55">46-55 años</option>
+            <option value="56-65">56-65 años</option>
+            <option value="65+">Más de 65 años</option>
+          </select>
+          <span class="input-info">Tipo: select (rango de edad)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="birthdate">Fecha de nacimiento:</label>
+          <input type="date" id="birthdate" name="birthdate" max="2010-12-31" />
+          <span class="input-info">Tipo: date (selector de fecha nativo)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="datetime">Fecha y hora de preferencia de contacto:</label>
+          <input type="datetime-local" id="datetime" name="datetime" />
+          <span class="input-info">Tipo: datetime-local (fecha + hora)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="time">Hora preferida para llamadas:</label>
+          <input type="time" id="time" name="time" />
+          <span class="input-info">Tipo: time (selector de hora)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="month">Mes de compra preferido:</label>
+          <input type="month" id="month" name="month" />
+          <span class="input-info">Tipo: month (mes y año)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="week">Semana de preferencia:</label>
+          <input type="week" id="week" name="week" />
+          <span class="input-info">Tipo: week (semana del año)</span>
+        </div>
+
+        <!-- Input de tipo RANGE (Slider) -->
+        <div class="form-group full-width">
+          <label for="volume">Nivel de volumen preferido (0-100):</label>
+          <input type="range" id="volume" name="volume" min="0" max="100" value="50" step="5" />
+          <div class="range-value">Rango: 0 - 100 (valor por defecto: 50)</div>
+          <span class="input-info">Tipo: range (slider deslizante - mueve el control para ajustar)</span>
+        </div>
+
+        <!-- Input de tipo COLOR -->
+        <div class="form-group">
+          <label for="color">Color preferido para tus audífonos:</label>
+          <input type="color" id="color" name="color" value="#667eea" />
+          <span class="input-info">Tipo: color (selector de color nativo)</span>
+        </div>
+
+        <!-- Input de tipo FILE -->
+        <div class="form-group">
+          <label for="photo">Sube una foto de tus audífonos actuales:</label>
+          <input type="file" id="photo" name="photo" accept="image/*" />
+          <span class="input-info">Tipo: file (selector de archivos con accept="image/*")</span>
+        </div>
+
+        <!-- Experiencia con audífonos -->
+        <div class="form-group full-width">
+          <label
+            >¿Volverías a comprar audífonos de la misma marca que usas
+            actualmente?</label
+          >
+          <div class="radio-group">
+            <label
+              ><input type="radio" name="return" value="yes" required />
+              Sí</label
+            >
+            <label><input type="radio" name="return" value="no" /> No</label>
+            <label
+              ><input type="radio" name="return" value="maybe" /> Tal vez</label
+            >
+          </div>
+          <span class="input-info">Tipo: radio (selección única)</span>
+        </div>
+
+        <div class="form-group full-width">
+          <label
+            >Nivel de satisfacción con tus audífonos actuales:</label
+          >
+          <div class="radio-group">
+            <label
+              ><input type="radio" name="satisfaction" value="very_satisfied" required />
+              Muy satisfecho</label
+            >
+            <label><input type="radio" name="satisfaction" value="satisfied" /> Satisfecho</label>
+            <label
+              ><input type="radio" name="satisfaction" value="neutral" /> Neutral</label
+            >
+            <label
+              ><input type="radio" name="satisfaction" value="dissatisfied" /> Insatisfecho</label
+            >
+            <label
+              ><input type="radio" name="satisfaction" value="very_dissatisfied" /> Muy insatisfecho</label
+            >
+          </div>
+          <span class="input-info">Tipo: radio (nivel de satisfacción)</span>
+        </div>
+
+        <!-- Nuevas preguntas -->
+        <div class="form-group full-width">
+          <label for="features"
+            >¿Qué características valoras más en unos audífonos?</label
+          >
+          <div class="checkbox-group">
+            <label
+              ><input type="checkbox" name="features" value="sound_quality" />
+              Calidad de sonido</label
+            >
+            <label
+              ><input type="checkbox" name="features" value="comfort" />
+              Comodidad</label
+            >
+            <label
+              ><input type="checkbox" name="features" value="battery" />
+              Duración de la batería</label
+            >
+            <label
+              ><input type="checkbox" name="features" value="design" />
+              Diseño</label
+            >
+            <label
+              ><input type="checkbox" name="features" value="price" />
+              Precio</label
+            >
+          </div>
+          <span class="input-info">Tipo: checkbox (selección múltiple)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="budget"
+            >¿Cuánto estarías dispuesto a gastar en unos audífonos
+            nuevos?</label
+          >
+          <select id="budget" name="budget" required>
+            <option value="" disabled selected hidden>
+              Selecciona un rango
+            </option>
+            <option value="low">Menos de $30</option>
+            <option value="medium">$30 - $80</option>
+            <option value="high">$80 - $150</option>
+            <option value="premium">Más de $150</option>
+          </select>
+          <span class="input-info">Tipo: select (lista desplegable)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="usage">¿Con qué frecuencia utilizas tus audífonos?</label>
+          <select id="usage" name="usage" required>
+            <option value="" disabled selected hidden>Elige una opción</option>
+            <option value="daily">Todos los días</option>
+            <option value="weekly">Varias veces por semana</option>
+            <option value="occasionally">Ocasionalmente</option>
+          </select>
+          <span class="input-info">Tipo: select (lista desplegable)</span>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="feedback">Comentarios adicionales:</label>
+          <textarea
+            id="feedback"
+            name="feedback"
+            rows="4"
+            placeholder="Cuéntanos tu experiencia..."
+            maxlength="500"
+          ></textarea>
+          <span class="input-info">Tipo: textarea (área de texto multilínea con maxlength)</span>
+        </div>
+
+        <!-- Input oculto (hidden) -->
+        <input type="hidden" name="form_version" value="2.0" />
+
+        <div class="form-group full-width">
+          <input type="submit" value="🚀 Enviar encuesta" />
+        </div>
+      </form>
+    </div>
+
+    <script>
+      // Función para detectar cambios en todos los inputs del formulario
+      function detectarCambiosFormulario() {
+        // Seleccionar el formulario
+        const formulario = document.querySelector('form');
+        
+        // Seleccionar todos los elementos de entrada (inputs, selects, textareas)
+        const elementos = formulario.querySelectorAll('input, select, textarea');
+        
+        // Agregar event listener 'change' a cada elemento
+        elementos.forEach(function(elemento) {
+          elemento.addEventListener('change', function() {
+            // Obtener información del elemento
+            const nombre = elemento.name || elemento.id || 'sin-nombre';
+            const tipo = elemento.type || elemento.tagName.toLowerCase();
+            let valor = elemento.value;
+            
+            // Para checkboxes, obtener todos los seleccionados
+            if (elemento.type === 'checkbox') {
+              const checkboxes = formulario.querySelectorAll(`input[name="${elemento.name}"]:checked`);
+              valor = Array.from(checkboxes).map(cb => cb.value).join(', ');
+            }
+            
+            // Para radios, solo mostrar si está seleccionado
+            if (elemento.type === 'radio' && elemento.checked) {
+              valor = elemento.value;
+            }
+            
+            // Imprimir en consola
+            console.log({
+              campo: nombre,
+              tipo: tipo,
+              valor: valor
+            });
+          });
+        });
+      }
+      
+      // Ejecutar cuando el DOM esté listo
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', detectarCambiosFormulario);
+      } else {
+        detectarCambiosFormulario();
+      }
+    </script>
+  </body>
+</html>
