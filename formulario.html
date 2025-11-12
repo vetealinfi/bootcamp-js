@@ -560,12 +560,12 @@
           >
           <div class="radio-group">
             <label
-              ><input type="radio" name="return" value="yes" required />
+              ><input type="radio" name="return" value="si" required />
               Sí</label
             >
             <label><input type="radio" name="return" value="no" /> No</label>
             <label
-              ><input type="radio" name="return" value="maybe" /> Tal vez</label
+              ><input type="radio" name="return" value="talvez" /> Tal vez</label
             >
           </div>
           <span class="input-info">Tipo: radio (selección única)</span>
@@ -577,18 +577,18 @@
           >
           <div class="radio-group">
             <label
-              ><input type="radio" name="satisfaction" value="very_satisfied" required />
+              ><input type="radio" name="satisfaction" value="muy_satisfecho" required />
               Muy satisfecho</label
             >
-            <label><input type="radio" name="satisfaction" value="satisfied" /> Satisfecho</label>
+            <label><input type="radio" name="satisfaction" value="satisfecho" /> Satisfecho</label>
             <label
               ><input type="radio" name="satisfaction" value="neutral" /> Neutral</label
             >
             <label
-              ><input type="radio" name="satisfaction" value="dissatisfied" /> Insatisfecho</label
+              ><input type="radio" name="satisfaction" value="insatisfecho" /> Insatisfecho</label
             >
             <label
-              ><input type="radio" name="satisfaction" value="very_dissatisfied" /> Muy insatisfecho</label
+              ><input type="radio" name="satisfaction" value="muy_insatisfecho" /> Muy insatisfecho</label
             >
           </div>
           <span class="input-info">Tipo: radio (nivel de satisfacción)</span>
@@ -601,23 +601,23 @@
           >
           <div class="checkbox-group">
             <label
-              ><input type="checkbox" name="features" value="sound_quality" />
+              ><input type="checkbox" name="features" value="calidad_de_sonido" />
               Calidad de sonido</label
             >
             <label
-              ><input type="checkbox" name="features" value="comfort" />
+              ><input type="checkbox" name="features" value="comodidad" />
               Comodidad</label
             >
             <label
-              ><input type="checkbox" name="features" value="battery" />
+              ><input type="checkbox" name="features" value="duracion_de_la_bateria" />
               Duración de la batería</label
             >
             <label
-              ><input type="checkbox" name="features" value="design" />
+              ><input type="checkbox" name="features" value="diseno" />
               Diseño</label
             >
             <label
-              ><input type="checkbox" name="features" value="price" />
+              ><input type="checkbox" name="features" value="precio" />
               Precio</label
             >
           </div>
@@ -633,10 +633,10 @@
             <option value="" disabled selected hidden>
               Selecciona un rango
             </option>
-            <option value="low">Menos de $30</option>
-            <option value="medium">$30 - $80</option>
-            <option value="high">$80 - $150</option>
-            <option value="premium">Más de $150</option>
+            <option value="menos_de_30">Menos de $30</option>
+            <option value="entre_30_y_80">$30 - $80</option>
+            <option value="entre_80_y_150">$80 - $150</option>
+            <option value="mas_de_150">Más de $150</option>
           </select>
           <span class="input-info">Tipo: select (lista desplegable)</span>
         </div>
@@ -645,10 +645,11 @@
           <label for="usage">¿Con qué frecuencia utilizas tus audífonos?</label>
           <select id="usage" name="usage" required>
             <option value="" disabled selected hidden>Elige una opción</option>
-            <option value="daily">Todos los días</option>
-            <option value="weekly">Varias veces por semana</option>
+            <option value="todos_los_dias">Todos los días</option>
+            <option value="varias_veces_por_semana">Varias veces por semana</option>
             <option value="occasionally">Ocasionalmente</option>
           </select>
+          <option value="ocasionalmente">Ocasionalmente</option>
           <span class="input-info">Tipo: select (lista desplegable)</span>
         </div>
 
